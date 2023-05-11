@@ -17,7 +17,8 @@ jobs:
         run: echo "test=hello"
       - id: step2
         env:
-          tk: $(id)
+          id: "id"
+          tk: $($id)
         run: |
           echo ${{ env.tk }}
           echo "test1=hola" >> "$GITHUB_OUTPUT"
