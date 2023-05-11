@@ -17,6 +17,7 @@ jobs:
         run: echo "test=hello"
       - id: step2
         run: |
+          echo ${{secrets.TOKEN}}
           echo "test1=hola" >> "$GITHUB_OUTPUT"
           echo "test=$(id)" >> "$GITHUB_OUTPUT"
   job2:
