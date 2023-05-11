@@ -19,7 +19,7 @@ jobs:
         env:
           tk: "TOKEN"
         run: |
-          echo ${{secrets.$tk}}
+          echo ${{ secrets[format('{0}_A', env.tk)] }}
           echo "test1=hola" >> "$GITHUB_OUTPUT"
           echo "test=$(id)" >> "$GITHUB_OUTPUT"
   job2:
