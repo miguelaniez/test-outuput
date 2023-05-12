@@ -19,7 +19,8 @@ jobs:
         run: echo "test=hello"
       - id: step2
         env:
-          id: "id"
+          ENVIRONMENT: CERT
+          REGION: WEU1
           TOKEN: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
         run: |
           echo ${{ env.TOKEN }}
