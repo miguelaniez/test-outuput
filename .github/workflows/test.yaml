@@ -21,13 +21,17 @@ jobs:
         env:
           ENVIRONMENT: CERT
           REGION: WEU1
-          TOKEN_NAME: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
         run: |
-          echo "TOKEN=$($TOKEN_NAME)"
-          echo "TOKEN=$($TOKEN_NAME)" >> "$GITHUB_ENV"
+          export tokenName=$(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
+          echo $tokenName
+          echo "token=$tokenName" >> "$GITHUB_ENV"
+          echo "hola=Miguel" >> "$GITHUB_ENV"
+          echo "test1=hola" >> "$GITHUB_OUTPUT"
+          echo "test=$(id)" >> "$GITHUB_OUTPUT"
       - id: step3
         run: |
-          echo "${{ env.TOKEN }}"
+          echo "${{ secrets[env.token] }}" | sed 's/./& /g'
+          echo "${{ env.hola }}"
   job2:
     runs-on: ubuntu-latest
     needs: job1
