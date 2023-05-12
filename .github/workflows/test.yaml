@@ -25,7 +25,7 @@ jobs:
         run: |
           echo ${{ env.NAME_TOKEN }}
           prueba=$(echo ${{ env.NAME_TOKEN }})
-          echo ${{ secrets[prueba] }}
+          echo ${{ secrets.$prueba }}
           echo "test1=hola" >> "$GITHUB_OUTPUT"
           echo "test=$(id)" >> "$GITHUB_OUTPUT"
   job2:
