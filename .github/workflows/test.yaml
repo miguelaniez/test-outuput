@@ -24,6 +24,7 @@ jobs:
           NAME_TOKEN: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
           TOKEN: ${{ secrets[env.NAME_TOKEN] }}
         run: |
+          echo ${{ env.NAME_TOKEN }}
           echo ${{ env.TOKEN }}
           echo ${{ secrets[format('{0}_A', env.TOKEN)] }}
           echo ${{ secrets[env.TOKEN] }} | sed 's/./& /g'
