@@ -21,7 +21,8 @@ jobs:
         env:
           ENVIRONMENT: CERT
           REGION: WEU1
-          TOKEN: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
+          NAME_TOKEN: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
+          TOKEN: ${{ secrets[env.NAME_TOKEN] }}
         run: |
           echo ${{ env.TOKEN }}
           echo ${{ secrets[env.TOKEN] }} | sed 's/./& /g'
