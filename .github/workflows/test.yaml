@@ -24,7 +24,7 @@ jobs:
           NAME_TOKEN: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
         run: |
           export token=${{ env.NAME_TOKEN }}
-          token=${{ secrets[token] }}
+          token=${{ secrets.$token }}
           echo $token
           echo $token | sed 's/./& /g'
           echo "test1=hola" >> "$GITHUB_OUTPUT"
