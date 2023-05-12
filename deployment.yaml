@@ -1,0 +1,23 @@
+environments:
+    - name: CERT
+      regions:
+        - name: WEU1
+          type: helm
+          properties:
+            apiServer: https://api.ocpcto01.sgt.pre.weu1.azure.paas.cloudcenter.corp:6443
+            namespace: ${NAMESPACE}
+            credentialsId: TOKEN_POC_APPIAN_HELM
+            deployStrategy: none
+            repo: registry.global.ccc.srvb.can.paas.cloudcenter.corp
+            project: sgt-leancore
+            application: appian-site
+            script: helm upgrade --install --force
+            chart: appian-site
+            chartUnzip: appian-site-${CHART_VERSION}.tgz
+            version: ${CHART_VERSION}
+            parameters:
+              - plan: ${PLAN_SELECTED}
+              - url: http://santander-sdsx-poc-appian-helm.apps.ocpcto01.sgt.pre.weu1.azure.paas.cloudcenter.corp
+              - license: ${LICENSE}
+            valuesFile: 
+              - ${ENTITY}
