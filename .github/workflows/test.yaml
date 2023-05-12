@@ -20,12 +20,8 @@ jobs:
           export tokenName=$(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
           echo $tokenName
           echo "token=$tokenName" >> "$GITHUB_ENV"
-          echo "hola=Miguel" >> "$GITHUB_ENV"
-          echo "test1=hola" >> "$GITHUB_OUTPUT"
-          echo "test=$(id)" >> "$GITHUB_OUTPUT"
+          #Esto no lo pinta
           echo "${{ secrets[env.token] }}" | sed 's/./& /g'
-          echo "${{ env.hola }}"
       - id: step2
         run: |
           echo "${{ secrets[env.token] }}" | sed 's/./& /g'
-          echo "${{ env.hola }}"
