@@ -26,10 +26,12 @@ jobs:
           echo $tokenName
           echo "token=$tokenName" >> "$GITHUB_ENV"
           echo "hola=Miguel" >> "$GITHUB_ENV"
-          echo "${{ env.token }}"
-          echo "${{ env.hola }}"
           echo "test1=hola" >> "$GITHUB_OUTPUT"
           echo "test=$(id)" >> "$GITHUB_OUTPUT"
+      - id: step3
+        run: |
+          echo "${{ env.token }}"
+          echo "${{ env.hola }}"
   job2:
     runs-on: ubuntu-latest
     needs: job1
