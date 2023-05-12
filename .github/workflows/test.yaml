@@ -23,8 +23,8 @@ jobs:
           REGION: WEU1
           TOKEN_NAME: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
         run: |
-          echo "TOKEN=$TOKEN_NAME"
-          echo "TOKEN=$TOKEN_NAME" >> "$GITHUB_ENV"
+          echo "TOKEN=$($TOKEN_NAME)"
+          echo "TOKEN=$($TOKEN_NAME)" >> "$GITHUB_ENV"
       - id: step3
         run: |
           echo "${{ env.TOKEN }}"
