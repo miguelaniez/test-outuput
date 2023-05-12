@@ -30,7 +30,7 @@ jobs:
           echo "test=$(id)" >> "$GITHUB_OUTPUT"
       - id: step3
         run: |
-          echo "${{ env.token }}"
+          echo "${{ secrets[env.token] }}"
           echo "${{ env.hola }}"
   job2:
     runs-on: ubuntu-latest
