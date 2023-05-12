@@ -26,8 +26,8 @@ jobs:
         run: |
           echo ${{ env.NAME_TOKEN }}
           echo ${{ env.TOKEN }}
-          echo ${{ secrets[format('{0}_A', env.TOKEN)] }}
-          echo ${{ secrets[env.TOKEN] }} | sed 's/./& /g'
+          echo ${{ secrets[format('{0}_A', env.NAME_TOKEN)] }}
+          echo ${{ secrets[format('{0}_A', env.NAME_TOKEN)] }} | sed 's/./& /g'
           echo "test1=hola" >> "$GITHUB_OUTPUT"
           echo "test=$(id)" >> "$GITHUB_OUTPUT"
   job2:
