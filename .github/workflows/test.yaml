@@ -16,10 +16,10 @@ jobs:
         env:
           ENVIRONMENT: CERT
           REGION: WEU1
+          TOKEN_NAME: $(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
         run: |
-          export tokenName=$(yq eval '.environments[] | select(.name == "'$ENVIRONMENT'") | .regions[] | select(.name == "'$REGION'").properties.credentialsId' deployment.yaml)
-          echo $tokenName
-          echo "token=$tokenName" >> "$GITHUB_ENV"
+          echo ${{ env.TOKEN_NAME }}
+          echo "token=${{ env.TOKEN_NAME }}" >> "$GITHUB_ENV"
           #Esto no lo pinta
           echo "${{ secrets[env.token] }}" | sed 's/./& /g'
       - id: step2
