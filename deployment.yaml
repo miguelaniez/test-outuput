@@ -6,7 +6,7 @@ environments:
           properties:
             apiServer: https://api.ocpcto01.sgt.pre.weu1.azure.paas.cloudcenter.corp:6443
             namespace: ${NAMESPACE}
-            credentialsId: TOKEN_POC_APPIAN_HELM
+            credentialsId: TOKEN
             deployStrategy: none
             repo: registry.global.ccc.srvb.can.paas.cloudcenter.corp
             project: sgt-leancore
